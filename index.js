@@ -27,10 +27,16 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ *          
+ *          The count variable is declared within the counter1 function but outside of the counter2 function. 
  * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ *          counter1 code uses a closure because there is a function within it. 
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ *          In the scenario where you only want the count variable to be available inside that function. For keeping score on     different games. Counter2 would be better when you want the count variable to be accessable by other functions.
  *
 */
 
@@ -56,11 +62,20 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+                    // function inning(inningNum){
 
-    /*Code Here*/
+                    //  return Math.floor(Math.random() * 3);
+                    // }
+                    // console.log(inning(1));
+                    // console.log(inning(2));
+                    // console.log(inning(3));
+                    // console.log(inning(4));
+                    // console.log(inning(5));
+                    // console.log(inning(6));
+                    // console.log(inning(7));
+                    // console.log(inning(8));
+                    // console.log(inning(9));
 
-}
 
 /* Task 3: finalScore()
 
