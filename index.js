@@ -90,28 +90,16 @@ finalScore(inning, 9) might return:
 
 */ 
 
-// function finalScore(game, num){
-//   let home = 0;
-//   let away = 0;
-//   let emptyObj = {"Home": home, "Away": away};
-//     for(let i = 0; i < num ; i++){
-//       home =+ inning();
-//       away =+ inning();
-//     }
-//     return emptyObj;
-// }
-// console.log(finalScore(inning, 7));
-
-function finalScore(game, num){
-  let home = 0;
-  let away = 0;
-    for(let i = 0; i < num ; i++){
-      home =+ inning();
-      away =+ inning();
-    }
-    return {"Home": home, "Away": away};
-}
-console.log(finalScore(inning, 7));
+                    function finalScore(game, num){
+                      let home = 0;
+                      let away = 0;
+                        for(let i = 0; i < num ; i++){
+                          home = home + inning();
+                          away = away + inning();
+                        }
+                        return {"Home": home, "Away": away};
+                    }
+                    // console.log(finalScore(inning, 9));
 
 
 /* Task 4: 
@@ -135,36 +123,36 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(getInningScore, inning, inningNum) {
-    let teamScores = {"Home": 0, "Away": 0};
-    let scoreLine = ' ';
-  for(let i = 0; i < inningNum; i++){
-    let score = getInningScore(inning);
-    teamScores.home = teamScores.home + teamScores.Home;
-    teamScores.away = teamScores.away + teamScores.Away;
-    if(i === 0){
-      scoreLine = `1st inning: ${teamScores.away} - ${teamScores.home}\n`
-    }else if(i === 1){
-      scoreLine = scoreLine + `2nd inning: ${teamScores.away} - ${teamScores.home}\n`
-    }else if(i === 2){
-      scoreLine = scoreLine + `3rd inning: ${teamScores.away} - ${teamScores.home}\n`
-    }else {
-      scoreLine = scoreLine + `${i+1}th inning: ${teamScores.away} - ${teamScores.home}\n`
-    }
-    if(i + 1 === inningNum){
-      scoreLine = scoreLine + `Final Score: ${teamScores.away} - ${teamScores.home}\n`
-    }
-      
-    }
-    return scoreLine;
- }
-console.log(scoreboard(getInningScore, inning, 9));
-
-  function getInningScore(inning){
-    let home = inning();
-    let away = inning();
-    return final = {"Home": home, "Away": away};
+function scoreboard(getInningScore, inning, numInning){
+  let scores = { home: 0, away: 0 };
+  let scoreText = ''; // empty string as a placeholder 
+  for(let i = 0; i < numInning; i++){ // this will loop through all 9 innings
+    let score = getInningScore(inning);  
+      scores.home = scores.home + score.Home;
+      scores.away = scores.away + score.Away;
+      if(i === 0){
+        scoreText = `1st Inning: ${scores.away} - ${scores.home} \n`;
+      }else if(i === 1){
+        scoreText = scoreText + `2nd Inning: ${scores.away} - ${scores.home} \n`;
+      }else if(i === 2){
+        scoreText = scoreText + `3rd Inning: ${scores.away} - ${scores.home} \n`;
+      }else{
+        scoreText = scoreText + `${i+1}th Inning: ${scores.away} - ${scores.home} \n`;
+      }
+      if(i + 1 === numInning){
+        score = getInningScore(inning);
+        scores.home = scores.home + score.Home;
+        scores.away = scores.away + score.Away;
+        scoreText = scoreText + `Final Score ${scores.away} - ${scores.home} \n`;
+      }
   }
-  
-console.log(getInningScore(inning, 1));
+  return scoreText;
+}
 
+function getInningScore(inning){
+  let home = inning(); // invoking the inning function to get a random score number
+  let away = inning(); // will give random number to home and away
+  return final = {Home: home, Away: away};
+}
+
+console.log(scoreboard(getInningScore, inning, 9));
