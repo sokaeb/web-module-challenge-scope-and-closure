@@ -62,18 +62,11 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-                    function inning(inningNum){
+                    function inning(){
                     return Math.floor(Math.random() * 3);
                     }
-                    // console.log(inning(1));
-                    // console.log(inning(2));
-                    // console.log(inning(3));
-                    // console.log(inning(4));
-                    // console.log(inning(5));
-                    // console.log(inning(6));
-                    // console.log(inning(7));
-                    // console.log(inning(8));
-                    // console.log(inning(9));
+                    console.log(inning());
+          
 
 
 /* Task 3: finalScore()
@@ -90,16 +83,16 @@ finalScore(inning, 9) might return:
 
 */ 
 
-                    function finalScore(game, num){
+                    function finalScore(inning, numInning){
                       let home = 0;
                       let away = 0;
-                        for(let i = 0; i < num ; i++){
+                        for(let i = 0; i < numInning ; i++){
                           home = home + inning();
                           away = away + inning();
                         }
                         return {"Home": home, "Away": away};
                     }
-                    // console.log(finalScore(inning, 9));
+                    console.log(finalScore(inning, 9));
 
 
 /* Task 4: 
@@ -124,12 +117,13 @@ Final Score: awayTeam - homeTeam */
 
 
 function scoreboard(getInningScore, inning, numInning){
-  let scores = { home: 0, away: 0 };
-  let scoreText = ''; // empty string as a placeholder 
-  for(let i = 0; i < numInning; i++){ // this will loop through all 9 innings
-    let score = getInningScore(inning);  
-      scores.home = scores.home + score.Home;
-      scores.away = scores.away + score.Away;
+  let scores = {home: 0, away: 0 }; // object to hold scores for each inning
+  let scoreText = ''; // empty string as a placeholder for now as each inning score is calculated (behind the scenes, each line is added)
+  let inningScore = getInningScore(inning); // stores the values calculated in the getInningScore func into the inningScore variable
+  
+  for(let i = 0; i < numInning; i++){ // this will loop through all 'numInning' number of innings, in this case it'll be 9 innings
+      scores.home = scores.home + inningScore.Home; // wanting to update the Home key in the scores object with the value of i (starts at 0) + the value calculated from the getInningScore func which is named 'inningScore'
+      scores.away = scores.away + inningScore.Away;
       if(i === 0){
         scoreText = `1st Inning: ${scores.away} - ${scores.home} \n`;
       }else if(i === 1){
@@ -139,10 +133,10 @@ function scoreboard(getInningScore, inning, numInning){
       }else{
         scoreText = scoreText + `${i+1}th Inning: ${scores.away} - ${scores.home} \n`;
       }
-      if(i + 1 === numInning){
-        score = getInningScore(inning);
-        scores.home = scores.home + score.Home;
-        scores.away = scores.away + score.Away;
+      if(i + 1 === numInning){ // references the last inning 
+        // score = getInningScore(inning); // these aren't needed 
+        // scores.home = scores.home + inningScore.Home;
+        // scores.away = scores.away + inningScore.Away;
         scoreText = scoreText + `Final Score ${scores.away} - ${scores.home} \n`;
       }
   }
@@ -150,9 +144,9 @@ function scoreboard(getInningScore, inning, numInning){
 }
 
 function getInningScore(inning){
-  let home = inning(); // invoking the inning function to get a random score number
-  let away = inning(); // will give random number to home and away
-  return final = {Home: home, Away: away};
+  let home = inning(); // invoking the inning function to get a random score number, will give random number to home and away
+  let away = inning();
+  return final = {Home: home, Away: away}; // this is an object that's holding the randomized home and away scores 
 }
 
 console.log(scoreboard(getInningScore, inning, 9));
